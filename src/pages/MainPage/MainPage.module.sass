@@ -1,0 +1,282 @@
+@import "../../styles/animations"
+
+.main_page
+  display: flex
+  flex-direction: column
+  width: 100%
+
+.main_image
+  display: flex
+  flex-direction: column
+  width: 100%
+  background-image: url("../../assets/main-banner.png")
+  background-size: 100%
+
+  &__labels
+    display: flex
+    flex-direction: column
+    margin: 80px 250px 640px
+    color: white
+
+    &__first
+      font-weight: 800
+      font-size: 60px
+
+    &__second
+      font-weight: 300
+      font-size: 24px
+
+
+.main_advantages
+  display: flex
+  flex-direction: row
+  padding: 100px 140px 0
+  justify-content: space-between
+
+  &__item
+    display: flex
+    flex-direction: row
+    gap: 24px
+    width: 27%
+
+    img
+      width: 70px
+      height: 70px
+
+    &__text
+      display: flex
+      flex-direction: column
+      align-items: start
+      text-align: start
+
+      &__first
+        font-size: 25px
+        font-weight: 500
+
+      &__second
+        font-size: 14px
+        font-weight: 500
+        color: #828282
+
+
+.main_ads
+  display: flex
+  flex-direction: row
+  padding: 140px 120px 0
+  height: 500px
+  justify-content: space-between
+
+  &__see_more
+    display: flex
+    flex-direction: column
+    width: 25%
+    align-items: start
+    justify-content: center
+    gap: 30px
+    cursor: pointer
+
+    &__first
+      font-weight: 500
+      font-size: 50px
+      text-align: start
+
+    &__second
+      display: flex
+      flex-direction: row
+      gap: 15px
+      text-align: start
+      font-weight: 500
+      font-size: 18px
+
+      img
+        height: 28px
+        width: 28px
+
+  &__examples
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    width: 70%
+
+.ad_example
+  display: flex
+  flex-direction: row
+  width: 30%
+  position: relative
+  pointer-events: none
+  cursor: default
+
+  &__back
+    display: flex
+    flex-direction: column
+    background-color: #C1D0E4
+    border-radius: 50px
+    width: 100%
+    height: 80%
+    margin-top: auto
+
+  &__info
+    display: flex
+    flex-direction: column
+    background-color: white
+    border-radius: 50px
+    width: 100%
+    height: 50%
+    margin-top: auto
+    justify-content: space-between
+
+  &__text
+    display: flex
+    flex-direction: column
+    width: 100%
+    padding: 26px 30px
+
+    &__name
+      display: flex
+      font-weight: 500
+      font-size: 24px
+
+    &__stars
+      display: flex
+      flex-direction: row
+      gap: 2px
+
+      img
+        height: 18px
+
+  &__add
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding: 0 30px
+    align-items: center
+    font-size: 28px
+    font-weight: 500
+
+    img
+      height: 60px
+      width: 60px
+
+img.ad_example
+  z-index: 100
+  position: absolute
+  width: 100%
+  pointer-events: none
+
+
+.main_events
+  display: flex
+  flex-direction: column
+  gap: 20px
+  padding: 180px 120px
+
+  &__label_first
+    font-weight: 600
+    font-size: 45px
+
+  &__label_second
+    font-weight: 500
+    font-size: 20px
+    color: #4F4F4F
+
+  &__images
+    display: flex
+    flex-direction: row
+    width: 100%
+    justify-content: space-between
+    margin-top: 50px
+
+    &__div
+      display: flex
+      flex-direction: column
+      width: 49%
+      gap: 13px
+
+.main_event_item
+  display: flex
+  width: 100%
+  position: relative
+
+  img
+    width: 100%
+    border-radius: 50px
+    pointer-events: none
+
+  div
+    color: transparent
+    z-index: 100
+    position: absolute
+    border-radius: 50px
+    width: 100%
+    height: 100%
+
+  div:hover
+    display: flex
+    background-color: rgba(0, 0, 0, 0.3)
+    width: 100%
+    height: 100%
+    justify-content: center
+    align-items: center
+    color: white
+    font-size: 50px
+    font-weight: 600
+
+
+.main_forum
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  padding: 0 120px
+
+  &__text
+    display: flex
+    flex-direction: column
+    justify-content: start
+    align-items: start
+    gap: 25px
+    width: 40%
+
+    &__first
+      font-weight: 600
+      font-size: 50px
+      color: black
+      text-align: start
+
+    &__second
+      color: #4F4F4F
+      font-weight: 500
+      font-size: 20px
+      text-align: start
+
+  &__info
+    display: flex
+    flex-direction: column
+    gap: 30px
+    margin-top: 50px
+
+  &__item
+    display: flex
+    flex-direction: row
+    align-items: start
+    justify-content: start
+    gap: 20px
+
+    img
+      width: 60px
+      height: 60px
+
+    &__text_first
+      text-align: start
+      font-size: 25px
+      font-weight: 500
+      color: black
+
+    &__text_second
+      text-align: start
+      font-weight: 400
+      color: #4F4F4F
+      font-size: 16px
+
+  &__img
+    width: 40%

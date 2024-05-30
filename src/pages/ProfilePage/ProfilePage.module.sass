@@ -1,0 +1,73 @@
+.header
+  display: flex
+  flex-direction: column
+  width: 100%
+  background: linear-gradient(180deg, #336767 0%, #66CDCD 100%)
+
+.profile
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  justify-content: start
+
+  &__main
+    display: flex
+    flex-direction: column
+    padding: 50px 120px 80px
+    align-items: center
+
+.user_info
+  display: flex
+  flex-direction: row
+  gap: 50px
+  padding: 0 30px
+  justify-content: start
+  width: 100%
+
+  img
+    width: 15%
+    border-radius: 90px
+    box-shadow: 0 0 20px #65cba5
+
+  &__text
+    display: flex
+    flex-direction: column
+    align-items: start
+    color: black
+    gap: 5px
+
+  &__name
+    font-size: 30px
+    font-weight: 600
+
+  &__mail
+    font-weight: 400
+    font-size: 20px
+
+  &__how_long
+    font-weight: 400
+    font-size: 20px
+
+  &__description
+    font-weight: 400
+    font-size: 20px
+
+.ads_choose
+  display: flex
+  flex-direction: row
+  align-items: center
+  gap: 5px
+  font-size: 20px
+  font-weight: 400
+  cursor: pointer
+  margin: 50px 0 30px
+
+  &__selected
+    color: #65cba5
+    font-size: 22px
+    font-weight: 700
+    cursor: pointer
+
+.ads
+  display: grid
+  gap: 50px

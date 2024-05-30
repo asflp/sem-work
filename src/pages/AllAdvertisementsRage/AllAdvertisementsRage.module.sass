@@ -1,0 +1,90 @@
+@import "../../styles/colors"
+
+.header
+  display: flex
+  flex-direction: column
+  width: 100%
+  background: linear-gradient(180deg, #336767 0%, #66CDCD 100%)
+
+.all_ads
+  display: flex
+  flex-direction: column
+  padding: 30px 120px 80px
+
+  &__label
+    font-weight: 600
+    font-size: 36px
+    color: $plant-green
+    margin-right: auto
+
+  &__main
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding-top: 40px
+
+  &__filters
+    display: flex
+    flex-direction: column
+    width: 21%
+    align-items: start
+
+    &__label
+      font-size: 24px
+      font-weight: 600
+      color: $plant-green
+
+    &__button
+      color: white
+      background-color: #ABB7C2
+      font-size: 18px
+      font-weight: 600
+      cursor: pointer
+      border-radius: 40px
+
+    &__button_selected
+      background-color: #63CB89
+      cursor: default
+      border-radius: 40px
+      color: white
+      font-size: 18px
+      font-weight: 600
+
+.filters
+  display: flex
+  flex-direction: column
+  gap: 40px
+  padding: 20px 0 60px
+  align-items: start
+
+  &__item
+    display: flex
+    flex-direction: column
+    gap: 6px
+
+  &__name
+    color: $plant_green
+    font-weight: 500
+    font-size: 20px
+    text-align: start
+
+  &__option
+    color: #858D84
+    font-weight: 300
+    font-size: 17px
+    text-align: start
+    margin-left: 30px
+    cursor: pointer
+
+  &__option_selected
+    color: #858D84
+    font-weight: 500
+    font-size: 17px
+    text-align: start
+    margin-left: 30px
+    cursor: pointer
+
+.ads
+  display: grid
+  width: 75%
+  gap: 40px

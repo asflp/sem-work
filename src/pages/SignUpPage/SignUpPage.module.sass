@@ -1,0 +1,76 @@
+@import "../../styles/colors"
+
+.base
+  display: flex
+  flex-direction: row
+
+  img
+    display: flex
+    height: 100vh
+    width: 40%
+    margin-left: auto
+
+  &__forma
+    display: flex
+    flex-direction: column
+    width: 60%
+    min-height: 100vh
+    align-items: center
+    justify-content: start
+
+    &__label
+      font-weight: 500
+      font-size: 32px
+      margin: 50px 0 10px
+
+form
+  display: flex
+  flex-direction: column
+  padding: 20px 0 0
+  align-items: center
+
+  label
+    display: flex
+    flex-direction: column
+    align-items: start
+    font-size: 14px
+    font-weight: 500
+    margin: 10px 0 0 0
+
+  input
+    width: 400px
+    padding: 10px
+    border-radius: 15px
+    border: 2px solid #cbc9c9
+
+
+  input:focus
+    border: 2px solid $dark-green
+    outline: none
+
+  p
+    color: red
+    font-size: 10px
+    padding: 0 0 0 10px
+    margin: 0 auto 0 0
+
+  button
+    background-color: $plant-green
+    color: white
+    border-radius: 15px
+    border: none
+    margin: 20px 0
+    width: 100%
+
+  button:focus
+    outline: none
+
+  button:hover
+    border: none
+
+span
+  display: flex
+  gap: 5px
+
+  a
+    cursor: pointer

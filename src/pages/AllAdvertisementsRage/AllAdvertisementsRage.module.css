@@ -1,0 +1,94 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(180deg, #336767 0%, #66CDCD 100%);
+}
+
+.all_ads {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 120px 80px;
+}
+.all_ads__label {
+  font-weight: 600;
+  font-size: 36px;
+  color: #3A5B22;
+  margin-right: auto;
+}
+.all_ads__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+.all_ads__filters {
+  display: flex;
+  flex-direction: column;
+  width: 21%;
+  align-items: start;
+}
+.all_ads__filters__label {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3A5B22;
+}
+.all_ads__filters__button {
+  color: white;
+  background-color: #ABB7C2;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 40px;
+}
+.all_ads__filters__button_selected {
+  background-color: #63CB89;
+  cursor: default;
+  border-radius: 40px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px 0 60px;
+  align-items: start;
+}
+.filters__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.filters__name {
+  color: #3A5B22;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: start;
+}
+.filters__option {
+  color: #858D84;
+  font-weight: 300;
+  font-size: 17px;
+  text-align: start;
+  margin-left: 30px;
+  cursor: pointer;
+}
+.filters__option_selected {
+  color: #858D84;
+  font-weight: 500;
+  font-size: 17px;
+  text-align: start;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.ads {
+  display: grid;
+  width: 75%;
+  gap: 40px;
+}
+
+/*# sourceMappingURL=AllAdvertisementsRage.module.css.map */

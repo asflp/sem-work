@@ -1,0 +1,59 @@
+.header_page {
+  display: flex;
+  flex-direction: row;
+  padding: 31px 90px;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_page__logo {
+  width: 180px;
+  cursor: pointer;
+}
+.header_page__labels {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+}
+.header_page__person {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 20px;
+  align-items: center;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+}
+.header_page__person__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+}
+.header_page__person__avatar img {
+  width: 30px;
+  height: 30px;
+}
+
+.selected_label {
+  font-weight: 700;
+  background: linear-gradient(90deg, #2AF598 0%, #009EFD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: default;
+}
+
+.other_label {
+  font-weight: 300;
+  color: white;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

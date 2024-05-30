@@ -1,0 +1,78 @@
+.base {
+  display: flex;
+  flex-direction: row;
+}
+.base img {
+  display: flex;
+  height: 100vh;
+  width: 40%;
+  margin-left: auto;
+}
+.base__forma {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: start;
+}
+.base__forma__label {
+  font-weight: 500;
+  font-size: 32px;
+  margin: 50px 0 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0;
+  align-items: center;
+}
+form label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+form input {
+  width: 400px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid #cbc9c9;
+}
+form input:focus {
+  border: 2px solid #336767;
+  outline: none;
+}
+form p {
+  color: red;
+  font-size: 10px;
+  padding: 0 0 0 10px;
+  margin: 0 auto 0 0;
+}
+form button {
+  background-color: #3A5B22;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  margin: 20px 0;
+  width: 100%;
+}
+form button:focus {
+  outline: none;
+}
+form button:hover {
+  border: none;
+}
+
+span {
+  display: flex;
+  gap: 5px;
+}
+span a {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=SignUpPage.module.css.map */
