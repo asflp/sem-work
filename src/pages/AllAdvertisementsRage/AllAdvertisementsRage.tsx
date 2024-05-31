@@ -1,35 +1,30 @@
-import {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
-import {Header} from "../../components/Header/Header.tsx";
-import {SearchString} from "../../components/SearchString/SearchString.tsx";
+import {Dispatch, FC, SetStateAction, useContext, useEffect, useState} from "react";
+import {Header} from "../../components";
+import {SearchString} from "../../components";
 import styles from "./AllAdvertisementsRage.module.sass";
-import {AdvertisementItem} from "../../components/AdvertisementItem/AdvertisementItem.tsx";
+import {AdvertisementItem} from "../../components";
+import {observer} from "mobx-react";
+import {adContext} from "../../store/StoreContext.tsx";
+import {AdItem} from "../../store/AdvertisementStore.ts";
 
-export type adItem  = {
-    id: string
-    isLike: boolean
-    name: string
-    photoUrl: string | null
-    price: number
-    username: string
-}
 
-export const AllAdvertisementsRage: FC = () => {
+export const AllAdvertisementsRage: FC = observer(() => {
 
-    const [advertisements, setAdvertisements] = useState<adItem[]>([]);
+    const adStore = useContext(adContext);
+
+    const [advertisements, setAdvertisements] = useState<AdItem[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5038/Advertisement/all?PageNumber=1&Batchsize=12');
-                const data = await response.json();
-                setAdvertisements(data.result);
+                const data = await adStore.getAllAds(1);
+                setAdvertisements(data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching ad data:', error);
             }
         };
         fetchData();
-    }, []);
-
+    }, [adStore]);
 
     const [selectedType, setSelectedType] = useState<number | null>(null);
     const [selectedCost, setSelectedCost] = useState<number | null>(null);
@@ -63,7 +58,7 @@ export const AllAdvertisementsRage: FC = () => {
         fetchData();
     }
 
-    const handleSearch = (ads: adItem[]) => {
+    const handleSearch = (ads: AdItem[]) => {
         setAdvertisements(ads);
     };
 
@@ -133,11 +128,11 @@ export const AllAdvertisementsRage: FC = () => {
                     </div>
 
                     <div className={styles.ads} style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-                        { advertisements.map((ad: adItem, index: number) => (
+                        { advertisements.map((ad, index) => (
                                     <AdvertisementItem
                                         key={index}
-                                        imageUrl={ad.photoUrl ? ad.photoUrl
-                                            : "https://static.tildacdn.com/tild6630-3732-4131-a336-306466393031/28942791.jpg"}
+                                        imageUrl={ad.photoUrl
+                                            ?? "https://static.tildacdn.com/tild6630-3732-4131-a336-306466393031/28942791.jpg"}
                                         name={ad.name}
                                         cost={ad.price}
                                         person={ad.username}
@@ -149,4 +144,4 @@ export const AllAdvertisementsRage: FC = () => {
             </div>
         </div>
     )
-}
+})

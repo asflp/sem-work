@@ -1,19 +1,15 @@
-import {ChangeEvent, FC, useState} from "react";
+import {ChangeEvent, FC, FormEvent, useContext, useState} from "react";
 import signBanner from "../../assets/sign-banner.png"
 import styles from "./SignUpPage.module.sass"
 import {Link} from "react-router-dom";
+import {userContext} from "../../store/StoreContext.tsx";
+import {observer} from "mobx-react";
 
-export const SignUpPage: FC = () => {
+export const SignUpPage: FC = observer(() => {
+
+    const userStore = useContext(userContext);
 
     const [formData, setFormData] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-    });
-
-    const [errors, setErrors] = useState({
         name: '',
         surname: '',
         email: '',
@@ -27,101 +23,14 @@ export const SignUpPage: FC = () => {
             ...formData,
             [event.target.name]: event.target.value,
         });
-
-        setErrors({
-            ...errors,
-            [event.target.name]: validateData(event.target.name, event.target.value)
-        })
     };
 
-    const validateData = (name: string, value: string): string => {
-        if(name === "name"){
-            if (!value) {
-                return "Имя не может быть пустым";
-            }
-            if (value.length > 50) {
-                return "Максимальная длина - 50 символов";
-            }
-            if (value.length < 2) {
-                return "Минимальная длина - 2 символов";
-            }
-            if (!/^[а-яА-Яa-zA-Z]+$/.test(value)) {
-                return "Все символы должны быть буквами";
-            }
-        } else if(name === "surname"){
-            if (!value) {
-                return "Фамилия не может быть пустой";
-            }
-            if (value.length > 50) {
-                return "Максимальная длина - 50 символов";
-            }
-            if (value.length < 2) {
-                return "Минимальная длина - 2 символов";
-            }
-            if (!/^[а-яА-Яa-zA-Z]+$/.test(value)) {
-                return "Все символы должны быть буквами";
-            }
-        } else if(name === "email"){
-            if (!value) {
-                return "Почта не может быть пустой";
-            }
-            if (!/\S+@\S+\.\S+/.test(value)) {
-                return "Это не адрес электронной почты";
-            }
-        } else if(name === "phone"){
-            if (!value) {
-                return "Номер телефона не может быть пустым";
-            }
-            if (value.length > 20) {
-                return "Максимальная длина - 50 символов";
-            }
-            if (value.length < 2) {
-                return "Минимальная длина - 2 символов";
-            }
-            if (!/^\d+$/.test(value)) {
-                return "Все символы должны быть цифрами";
-            }
-        } else if(name === "password") {
-            if (!value) {
-                return "Пароль не может быть пустым";
-            }
-            if (value.length > 50) {
-                return "Максимальная длина - 50 символов";
-            }
-            if (value.length < 8) {
-                return "Минимальная длина - 8 символов";
-            }
-            if (!/[A-Za-z]/.test(value)) {
-                return "Пароль должен содержать хотя бы 1 букву";
-            }
-            if (!/\d/.test(value)) {
-                return "Пароль должен содержать хотя бы 1 цифру";
-            }
-        }
-        return "";
-    }
-
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        if(errors.name !== "" || errors.surname !== "" || errors.email !== ""
-        || errors.phoneNumber !== "" || errors.password !== ""){
-            return;
-        }
-
-        const response = await fetch('http://localhost:5038/User/new', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-
-        if (response.status == 201) {
+        const response = await userStore.signUpUser(formData);
+        if(response){
             window.location.assign("../")
-            console.log("bnm")
-        } else {
-            alert('Произошла ошибка при отправке данных');
         }
     };
 
@@ -136,35 +45,35 @@ export const SignUpPage: FC = () => {
                         <input type={"text"} placeholder={"Иван"} onChange={handleInputChange}
                                name={"name"}/>
                     </label>
-                    <p>{errors.name}</p>
+                    <p>{userStore.signUpErrors.name}</p>
 
                     <label>
                         Фамилия
                         <input type={"text"} placeholder={"Иванов"} onChange={handleInputChange}
                                name={"surname"}/>
                     </label>
-                    <p>{errors.surname}</p>
+                    <p>{userStore.signUpErrors.surname}</p>
 
                     <label>
                         Email
                         <input type={"email"} placeholder={"ivan-ivanov@mail.ru"} onChange={handleInputChange}
                                name={"email"}/>
                     </label>
-                    <p>{errors.email}</p>
+                    <p>{userStore.signUpErrors.email}</p>
 
                     <label>
                         Номер телефона
                         <input type={"text"} placeholder={"8(912)-345-67-89"} onChange={handleInputChange}
                                name={"phoneNumber"}/>
                     </label>
-                    <p>{errors.phoneNumber}</p>
+                    <p>{userStore.signUpErrors.phoneNumber}</p>
 
                     <label>
                         Пароль
                         <input type={"password"} placeholder={"Пароль"} onChange={handleInputChange}
                                name={"password"}/>
                     </label>
-                    <p>{errors.password}</p>
+                    <p>{userStore.signUpErrors.password}</p>
 
                     <button type={"submit"}>Зарегистироваться</button>
                 </form>
@@ -178,4 +87,4 @@ export const SignUpPage: FC = () => {
             <img src={signBanner} alt={""}/>
         </div>
     );
-}
+})

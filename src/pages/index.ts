@@ -1,0 +1,8 @@
+export { AddAdvertisementPage } from './AddAdvertisementPage'
+export { AdvertisementItemPage } from './AdvertisementItemPage'
+export { AllAdvertisementsRage } from './AllAdvertisementsRage'
+export { CartPage } from './CartPage'
+export { MainPage } from './MainPage'
+export { ProfilePage } from './ProfilePage'
+export { SignInPage } from './SignInPage'
+export { SignUpPage } from './SignUpPage'

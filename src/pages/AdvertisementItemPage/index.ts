@@ -1,0 +1,1 @@
+export { AdvertisementItemPage } from './AdvertisementItemPage.tsx'

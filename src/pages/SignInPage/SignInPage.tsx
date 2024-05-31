@@ -1,17 +1,16 @@
-import {ChangeEvent, FC, useState} from "react";
+import {ChangeEvent, FC, FormEvent, useContext, useState} from "react";
 import styles from "./SignInPage.module.sass";
 import signBanner from "../../assets/sign-banner.png";
 import {Link} from "react-router-dom";
-import {ErrorType} from "../AddAdvertisementPage/AddAdvertisementPage.tsx";
+import {SignInUser} from "../../store/UserStore.ts";
+import { userContext} from "../../store/StoreContext.tsx";
+import {observer} from "mobx-react";
 
-export const SignInPage: FC = () => {
+export const SignInPage: FC = observer(() => {
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
+    const userStore = useContext(userContext);
 
-    const [errors, setErrors] = useState({
+    const [formData, setFormData] = useState<SignInUser>({
         email: '',
         password: '',
     });
@@ -23,31 +22,13 @@ export const SignInPage: FC = () => {
         });
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        const response = await fetch('http://localhost:5038/User/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-
-        if(response.ok){
-            const data = await response.json()
-            sessionStorage.setItem("tokenKey", data.token);
+        const response = await userStore.signInUser(formData);
+        if(response){
             window.location.assign("../")
-        } else {
-            const data = await response.json()
-            data.map((item: ErrorType) => {
-                setErrors({
-                    ...errors,
-                    [item.entry]: item.errorMessage
-                })
-            })
         }
-
     };
 
     return (
@@ -61,14 +42,14 @@ export const SignInPage: FC = () => {
                         <input type={"email"} placeholder={"ivan-ivanov@mail.ru"} onChange={handleInputChange}
                                name={"email"}/>
                     </label>
-                    <p>{errors.email}</p>
+                    <p>{userStore.signInErrors.email}</p>
 
                     <label>
                         Пароль
                         <input type={"password"} placeholder={"Пароль"} onChange={handleInputChange}
                                name={"password"}/>
                     </label>
-                    <p>{errors.password}</p>
+                    <p>{userStore.signInErrors.password}</p>
 
                     <button type={"submit"}>Войти</button>
                 </form>
@@ -82,4 +63,4 @@ export const SignInPage: FC = () => {
             <img src={signBanner} alt={""}/>
         </div>
     )
-}
+})

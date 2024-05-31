@@ -8,6 +8,16 @@ export interface ErrorType{
     errorMessage: string
 }
 
+
+// const ProtectedRoute = ({ children }) => {
+//     const token = sessionStorage.getItem("tokenKey");
+//     if (!token) {
+//         window.location.assign("../")
+//     }
+//     // Outlet
+//     return <>{children}</>
+// }
+
 export const AddAdvertisementPage: FC = () => {
 
     const token = sessionStorage.getItem("tokenKey");
@@ -109,7 +119,7 @@ export const AddAdvertisementPage: FC = () => {
                             <p>{errors.price}</p>
 
                             <textarea placeholder={"Описание: напишите как можно более подробно про ваш товар"}
-                                      maxLength={1000} name={"description"} onChange={handleInputChange}/>
+                                      maxLength={1000} name={"description"}/>
                             <p>{errors.description}</p>
                         </div>
 

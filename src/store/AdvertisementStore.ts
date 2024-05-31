@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { action, makeAutoObservable, observable } from "mobx";
 import axios, { AxiosResponse } from 'axios';
 
 export type AdItem  = {
@@ -10,42 +10,32 @@ export type AdItem  = {
     username: string
 }
 
-export class AdvertisementStore {
+export type AdsResponse = {
+    result: AdItem[];
+    pages: number;
+}
 
-    @observable
+export class AdvertisementStore {
     ads: AdItem[] = [];
 
-    // @action
-    // addTodo = ({name, description} : Omit<AdItem, 'checked' | 'id'>) => {
-    //     this.todos.push({id: this.todos.length == 0 ? 1 :
-    //             this.todos[this.todos.length - 1].id! + 1, name, description, completed: false })
-    //     localStorage.setItem('tasks', JSON.stringify(this.todos));
-    // }
+    constructor() {
+        makeAutoObservable(this, {
+            ads: observable,
+            getAllAds: action,
+        });
+    }
 
-    @action
     getAllAds = async (page: number): Promise<AdItem[]> => {
         try {
-            console.log("sss");
-            const response: AxiosResponse<AdItem[]> = await axios.get(`http://localhost:5038/Advertisement/all?PageNumber=${page}&Batchsize=12`);
-            return response.data; // Return the data from the response
+            const response: AxiosResponse<AdsResponse> =
+                await axios.get(`http://localhost:5038/Advertisement/all?PageNumber=${page}&Batchsize=12`);
+
+            return response.data.result; // Return the data from the response
         } catch (error) {
             console.error('Error fetching ad data:', error);
             throw error;
         }
     };
-
-    // @action
-    // removeTodo = (id: Todo['id']) => {
-    //     this.todos = this.todos.filter(todo => todo.id !== id);
-    //     localStorage.setItem('tasks', JSON.stringify(this.todos));
-    // }
-    //
-    // @computed
-    // get info() {
-    //     return {
-    //         notCompleted: this.todos.filter(todo => !todo.completed).length,
-    //     }
-    // }
 }
 
-export const advertisementStore = new AdvertisementStore();
+export const adStore = new AdvertisementStore();

@@ -18,8 +18,34 @@ import sunForum from "../../assets/main/forum/sun.svg"
 import tempForum from "../../assets/main/forum/temp.svg"
 import plantPotForum from "../../assets/main/forum/plant-pot.svg"
 import waterForum from "../../assets/main/forum/water.svg"
+import { motion } from "framer-motion";
 
 export const MainPage: FC = () => {
+
+    const featuresAnimation = {
+        hidden: {
+            x: -100,
+            opacity: 0,
+        },
+        visible: (custom: number) => ({
+            x: 0,
+            opacity: 1,
+            transition: { delay: custom * 0.2 }
+        }),
+    }
+
+    const adsAnimation = {
+        hidden: {
+            y: -100,
+            opacity: 0,
+        },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { delay: 0.6 }
+        },
+    }
+
     return (
         <div className={styles.main_page}>
             <div className={styles.main_image}>
@@ -32,34 +58,34 @@ export const MainPage: FC = () => {
                 </div>
             </div>
 
-            <div className={styles.main_advantages}>
-                <div className={styles.main_advantages__item}>
+            <motion.div initial={"hidden"} whileInView={"visible"} className={styles.main_advantages}>
+                <motion.div custom={3} variants={featuresAnimation} className={styles.main_advantages__item}>
                     <img src={chat}/>
 
                     <div className={styles.main_advantages__item__text}>
                         <div className={styles.main_advantages__item__text__first}>Форум</div>
                         <div className={styles.main_advantages__item__text__second}>Общайтесь с единомышленниками</div>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className={styles.main_advantages__item}>
+                <motion.div custom={2} variants={featuresAnimation} className={styles.main_advantages__item}>
                     <img src={shop}/>
 
                     <div className={styles.main_advantages__item__text}>
                         <div className={styles.main_advantages__item__text__first}>Доска объявлений</div>
                         <div className={styles.main_advantages__item__text__second}>Покупайте и продавайте</div>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className={styles.main_advantages__item}>
+                <motion.div custom={1} variants={featuresAnimation} className={styles.main_advantages__item}>
                     <img src={event}/>
 
                     <div className={styles.main_advantages__item__text}>
                         <div className={styles.main_advantages__item__text__first}>Мероприятия</div>
                         <div className={styles.main_advantages__item__text__second}>Находите крутые события</div>
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
             <div className={styles.main_ads}>
                 <div className={styles.main_ads__see_more}>
@@ -71,11 +97,11 @@ export const MainPage: FC = () => {
                     </div>
                 </div>
 
-                <div className={styles.main_ads__examples}>
+                <motion.div initial={"hidden"} whileInView={"visible"} className={styles.main_ads__examples}>
 
                     {[[plantOne, "Марго"], [plantTwo, "Клавдия"], [plantThree, "Иван"]].map((item, index) => (
                         <div className={styles.ad_example} key={`ad${index}`}>
-                            <img src={item[0]} className={styles.ad_example}/>
+                            <motion.img variants={adsAnimation} src={item[0]} className={styles.ad_example}/>
 
                             <div className={styles.ad_example__back}>
                                 <div className={styles.ad_example__info}>
@@ -97,7 +123,7 @@ export const MainPage: FC = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </motion.div>
             </div>
 
             <div className={styles.main_events}>
