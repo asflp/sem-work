@@ -1,26 +1,19 @@
-import {Header} from "../../components/Header/Header.tsx";
+import {Header} from "../../components";
 import styles from "./AddAdvertisementPage.module.sass";
 import banner from "../../assets/add-advertisement-banner.svg"
-import {ChangeEvent, FC, useState} from "react";
+import {ChangeEvent, FC, useContext, useState} from "react";
+import {UserContext} from "../../store/StoreContext.tsx";
 
 export interface ErrorType{
     entry: string
     errorMessage: string
 }
 
-
-// const ProtectedRoute = ({ children }) => {
-//     const token = sessionStorage.getItem("tokenKey");
-//     if (!token) {
-//         window.location.assign("../")
-//     }
-//     // Outlet
-//     return <>{children}</>
-// }
-
 export const AddAdvertisementPage: FC = () => {
 
-    const token = sessionStorage.getItem("tokenKey");
+    const userStore = useContext(UserContext);
+
+    const token = userStore.user?.token;
     if (!token) {
         window.location.assign("../")
     }
@@ -49,9 +42,11 @@ export const AddAdvertisementPage: FC = () => {
         building: ''
     });
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(e.target.files!);
-        setImages(prev => [...prev, ...files]);
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const filesArray = Array.from(event.target.files);
+            setImages(filesArray);
+        }
     };
 
     const handleRemoveImage = (index: number) => {
@@ -67,6 +62,7 @@ export const AddAdvertisementPage: FC = () => {
     };
 
     const handleSubmit = async (): Promise<void> => {
+
         return fetch(
             'http://localhost:5038/Advertisement/new',
             {

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["SignInPage.module.sass"],"names":[],"mappings":"AAAA;EACE;EACA;;AAEA;EACE;EACA;EACA;EACA;;AAEF;EACE;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA","file":"SignInPage.module.css"}
+{"version":3,"sourceRoot":"","sources":["SignInPage.module.sass","../../styles/adaptiv.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;;AAEA;EACE;EACA;EACA;EACA;;ACaA;EDjBF;IAOI;;;ACMF;EDbF;IAUI;;;AAEJ;EACE;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA","file":"SignInPage.module.css"}

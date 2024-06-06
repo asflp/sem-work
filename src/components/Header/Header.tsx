@@ -1,14 +1,26 @@
-import {FC} from "react";
+import {FC, useContext, useState} from "react";
 import styles from "./Header.module.sass"
-import logo from "../../assets/header/logo.svg"
 import avatarEmpty from "../../assets/header/avatar-empty.png"
 import {NavLink} from "react-router-dom";
+import {UserContext} from "../../store/StoreContext.tsx";
+import {observer} from "mobx-react";
+import {Icon} from "../Icon";
+import { motion } from "framer-motion";
 
 interface HeaderProps{
     selectedItem: string
 }
 
-export const Header: FC<HeaderProps> = ({selectedItem}) => {
+export const Header: FC<HeaderProps> = observer(({selectedItem}) => {
+
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const menuVariants = {
+        hidden: { display: "none", y: -10 },
+        visible: { display: "flex", y: 130 },
+    };
+
+    const userStore = useContext(UserContext);
 
     const links = [
         {
@@ -30,26 +42,47 @@ export const Header: FC<HeaderProps> = ({selectedItem}) => {
     ]
 
     return (
-        <div className={styles.header_page}>
+        <header className={styles.header_page}>
 
-            <img src={logo} className={styles.header_page__logo}/>
+            <Icon id={"logo"} width={180}/>
 
-            <div className={styles.header_page__labels}>
+            <button className={styles.menu} onClick={() => setIsOpen(!isOpen)}>Меню</button>
+            <motion.nav className={styles.menu__items} initial="hidden"
+                        animate={isOpen ? 'visible' : 'hidden'}
+                        variants={menuVariants}>
+                {links.map((item) => (
+                    <motion.a href={item.link} whileHover={{ scale: 1.1 }} key={item.name} className={item.name == selectedItem
+                        ? styles.selected_label : styles.other_label} onClick={() => setIsOpen(false)}>
+                        {item.name}
+                    </motion.a>
+                ))}
+            </motion.nav>
+
+            <nav className={styles.header_page__labels}>
                 {links.map((item) => (
                     <NavLink to={item.link} key={item.name} className={item.name == selectedItem
                         ? styles.selected_label : styles.other_label}>
                         {item.name}
                     </NavLink>
                 ))}
-            </div>
+            </nav>
 
-            <div className={styles.header_page__person}>
-                <div className={styles.header_page__person__avatar}>
-                    <img src={avatarEmpty}/>
-                </div>
+            {userStore.user ?
+                <div className={styles.header_page__person}>
+                    <div className={styles.header_page__person__avatar}>
+                        <img src={userStore.user.avatarUrl ?? avatarEmpty}/>
+                    </div>
 
-                Вход
-            </div>
-        </div>
+                    {userStore.user.name}
+                </div> :
+                <NavLink to={"../sign-in"} className={styles.header_page__person}>
+                    <div className={styles.header_page__person__avatar}>
+                        <img src={avatarEmpty}/>
+                    </div>
+
+                    Вход
+                </NavLink>
+            }
+        </header>
     )
-}
+})

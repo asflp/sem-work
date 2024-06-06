@@ -13,14 +13,14 @@
   &__main
     display: flex
     flex-direction: column
-    padding: 50px 120px 80px
+    padding: 50px 200px 80px
     align-items: center
 
     &__label
       display: flex
       color: black
       font-size: 32px
-      font-weight: 600
+      font-weight: 700
       margin-right: auto
 
 .main_info
@@ -35,3 +35,101 @@
 
     img
       width: 100%
+
+.item_info
+  display: flex
+  flex-direction: column
+  width: 35%
+  gap: 30px
+
+  &__first
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: start
+
+    div
+      font-weight: 500
+      font-size: 28px
+
+    img
+      height: 50px
+
+  &__buy
+    padding: 30px
+    background: linear-gradient(90deg, #2AF598 0%, #009EFD 100%)
+    color: white
+    font-size: 24px
+    font-weight: 500
+    border-radius: 30px
+
+  &__cart
+    padding: 30px
+    background: #E5E5E5
+    color: #59948A
+    font-size: 24px
+    font-weight: 300
+    border-radius: 30px
+
+.item_saler
+  display: flex
+  flex-direction: column
+
+  &__label
+    font-size: 22px
+    font-weight: 500
+    text-align: start
+
+  &__main
+    display: flex
+    flex-direction: row
+
+    img
+      width: 70px
+      border-radius: 50px
+
+  &__name
+    display: flex
+    font-weight: 400
+    justify-content: center
+    align-items: center
+
+  &__phone
+    color: #59948A
+    font-weight: 400
+    font-size: 20px
+    margin: 20px 0 30px
+    cursor: pointer
+
+  &__chat
+    color: #59948A
+    font-weight: 400
+    font-size: 20px
+    cursor: pointer
+
+.filters
+  display: flex
+  flex-direction: column
+  width: 100%
+  align-items: start
+  gap: 20px
+
+  &__name
+    text-align: start
+    font-size: 24px
+    font-weight: 500
+
+    p
+      color: black
+      font-size: 20px
+      font-weight: 500
+      display: flex
+      gap: 10px
+
+    b
+      font-size: 20px
+      font-weight: 500
+      color: #737c7e
+
+
+

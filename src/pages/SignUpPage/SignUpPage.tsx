@@ -2,12 +2,12 @@ import {ChangeEvent, FC, FormEvent, useContext, useState} from "react";
 import signBanner from "../../assets/sign-banner.png"
 import styles from "./SignUpPage.module.sass"
 import {Link} from "react-router-dom";
-import {userContext} from "../../store/StoreContext.tsx";
+import {UserContext} from "../../store/StoreContext.tsx";
 import {observer} from "mobx-react";
 
 export const SignUpPage: FC = observer(() => {
 
-    const userStore = useContext(userContext);
+    const userStore = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         name: '',

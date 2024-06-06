@@ -1,4 +1,5 @@
 @import "../../styles/colors"
+@import "../../styles/adaptiv"
 
 .header
   display: flex
@@ -11,17 +12,31 @@
   flex-direction: column
   padding: 30px 120px 80px
 
+  @include device(tablet)
+    padding: 20px 50px 50px
+
+  @include device(mobile)
+    padding: 20px 50px 50px
+
   &__label
     font-weight: 600
     font-size: 36px
     color: $plant-green
-    margin-right: auto
+    margin: 0 auto 0 0
 
   &__main
     display: flex
     flex-direction: row
     justify-content: space-between
     padding-top: 40px
+
+    @include device(tablet)
+      flex-direction: column
+      padding-top: 20px
+
+    @include device(mobile)
+      flex-direction: column
+      padding-top: 20px
 
   &__filters
     display: flex
@@ -33,6 +48,7 @@
       font-size: 24px
       font-weight: 600
       color: $plant-green
+      margin: 0
 
     &__button
       color: white
@@ -50,12 +66,36 @@
       font-size: 18px
       font-weight: 600
 
+    @include device(tablet)
+      &__label
+        cursor: pointer
+
+      &__button
+        display: none
+      &__button_selected
+        display: none
+
+    @include device(mobile)
+      &__label
+        cursor: pointer
+
+      &__button
+        display: none
+      &__button_selected
+        display: none
+
 .filters
   display: flex
   flex-direction: column
   gap: 40px
   padding: 20px 0 60px
   align-items: start
+
+  @include device(tablet)
+    display: none
+
+  @include device(mobile)
+    display: none
 
   &__item
     display: flex
@@ -67,6 +107,7 @@
     font-weight: 500
     font-size: 20px
     text-align: start
+    margin: 0
 
   &__option
     color: #858D84
@@ -75,6 +116,7 @@
     text-align: start
     margin-left: 30px
     cursor: pointer
+    display: block
 
   &__option_selected
     color: #858D84
@@ -83,8 +125,83 @@
     text-align: start
     margin-left: 30px
     cursor: pointer
+    display: block
 
 .ads
   display: grid
   width: 75%
   gap: 40px
+  grid-template-columns: repeat(3, 1fr)
+
+  @include device(tablet)
+    grid-template-columns: repeat(2, 1fr)
+    margin: 40px auto
+    width: 100%
+
+  @include device(mobile)
+    display: flex
+    flex-direction: column
+    margin: 20px auto
+
+.label_not_found
+  display: flex
+  margin: 30px auto
+  font-size: 30px
+  color: #8f8f8f
+  font-weight: 600
+
+.filters__adaptiv
+  display: flex
+  flex-direction: column
+  z-index: 100
+  position: absolute
+  background-color: white
+  border-radius: 15px
+  box-shadow: 0 0 10px #ABB7C2
+  width: 70vw
+  top: 30%
+  padding: 50px
+  margin-bottom: 50px
+
+  &__text
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+  &__label
+    margin: 0 0 10px
+    color: #3A5B22
+    font-size: 24px
+    font-weight: 600
+
+  &__close
+    margin: 0 0 0 auto
+    box-shadow: 0 0 10px #ABB7C2
+    padding: 0 18px
+    border-radius: 40px
+    color: red
+    font-weight: 700
+    font-size: 24px
+    cursor: pointer
+
+  @include device(desktop)
+    display: none
+
+
+.filters_adaptiv__button
+  color: white
+  background-color: #ABB7C2
+  font-size: 18px
+  font-weight: 600
+  cursor: default
+  border-radius: 40px
+  margin: 40px auto 0 0
+
+.filters_adaptiv__button_selected
+  background-color: #63CB89
+  cursor: pointer
+  border-radius: 40px
+  color: white
+  font-size: 18px
+  font-weight: 600
+  margin: 40px auto 0 0

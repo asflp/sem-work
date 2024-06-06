@@ -1,12 +1,11 @@
 import {ChangeEvent, FC, useState} from "react";
 import styles from "./SearchString.module.sass"
-import arrow from "../../assets/search/arrow.svg"
 import {NavLink} from "react-router-dom";
-import searchImg from "../../assets/search/search.svg"
-import {adItem} from "../../pages/AllAdvertisementsRage/AllAdvertisementsRage.tsx";
+import {AdItem} from "../../store/AdvertisementStore.ts";
+import {Icon} from "../Icon";
 
 interface SearchStringProps {
-    set: (ads: adItem[]) => void
+    set: (ads: AdItem[]) => void
 }
 
 export const SearchString: FC<SearchStringProps> = ({set}) => {
@@ -38,12 +37,14 @@ export const SearchString: FC<SearchStringProps> = ({set}) => {
         <div className={styles.search_string}>
             <div className={styles.search_string__city}>
                 Казань
-                <img src={arrow} alt={"Стрелка"}/>
+                <Icon id={"arrow"} width={24}/>
             </div>
 
-            <label>
+            <label className={styles.search_string__search}>
                 <input type={"text"} placeholder={"Поиск"} onChange={handleInputChange} value={search}/>
-                    <img src={searchImg} alt={"Поиск"} onClick={handleSearch}/>
+                <button onClick={handleSearch}>
+                    <Icon id={"search"} width={60}/>
+                </button>
             </label>
 
             <NavLink to={"../new"} className={styles.add_new}>Добавить объявление</NavLink>

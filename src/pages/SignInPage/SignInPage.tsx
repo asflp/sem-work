@@ -3,12 +3,12 @@ import styles from "./SignInPage.module.sass";
 import signBanner from "../../assets/sign-banner.png";
 import {Link} from "react-router-dom";
 import {SignInUser} from "../../store/UserStore.ts";
-import { userContext} from "../../store/StoreContext.tsx";
+import { UserContext} from "../../store/StoreContext.tsx";
 import {observer} from "mobx-react";
 
 export const SignInPage: FC = observer(() => {
 
-    const userStore = useContext(userContext);
+    const userStore = useContext(UserContext);
 
     const [formData, setFormData] = useState<SignInUser>({
         email: '',

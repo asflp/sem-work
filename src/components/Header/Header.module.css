@@ -17,6 +17,16 @@
   font-weight: 400;
   color: white;
 }
+@media (min-width: 320px) and (max-width: 767px) {
+  .header_page__labels {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header_page__labels {
+    display: none;
+  }
+}
 .header_page__person {
   display: flex;
   flex-direction: row;
@@ -54,6 +64,47 @@
   font-weight: 300;
   color: white;
   cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+}
+.menu__items {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  left: 45%;
+  flex-direction: column;
+  background-color: #fdfdfd;
+  border-radius: 20px;
+  box-shadow: 1px 1px 40px #ABB7C2;
+}
+.menu__items a {
+  margin: 10px;
+  color: black;
+  font-size: 20px;
+}
+.menu__items a:last-child {
+  border-bottom: none;
+}
+@media (min-width: 1024px) {
+  .menu {
+    display: none;
+  }
+}
+
+.menu:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+.menu:hover {
+  border: none;
 }
 
 /*# sourceMappingURL=Header.module.css.map */

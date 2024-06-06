@@ -19,11 +19,14 @@ export type User = {
     surname: string;
     email: string;
     id: string;
-    password: string;
     token: string;
+    avatarUrl: string;
+    phoneNumber: string;
+    createdAt: string;
+    description: string;
 }
 
-type ErrorItem = {
+export type ErrorItem = {
     entry: string;
     errorMessage: string;
 }
@@ -41,6 +44,7 @@ export class UserStore {
                 user: observable,
                 signInUser: action,
                 signUpUser: action,
+                getUser: action
             });
         this.signInErrors = {
             email: '',
@@ -66,7 +70,11 @@ export class UserStore {
             const response: AxiosResponse<User> =
                 await axios.post(`http://localhost:5038/User/auth`, data, config);
 
-            this.user = response.data;
+            runInAction(() => this.user = response.data);
+            sessionStorage.setItem("tokenKey", response.data.token);
+            console.log(response.data)
+            console.log(this.user)
+            console.log(this.getUser)
             return true;
 
         } catch (error) {
@@ -100,7 +108,7 @@ export class UserStore {
             const response: AxiosResponse<User> =
                 await axios.post(`http://localhost:5038/User/new`, data, config);
 
-            this.user = response.data;
+            runInAction(() => this.user = response.data);
             return true;
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -118,6 +126,11 @@ export class UserStore {
             }
             throw error;
         }
+    }
+
+    getUser = (): User | undefined => {
+        console.log(this.user)
+        return this.user;
     }
 }
 

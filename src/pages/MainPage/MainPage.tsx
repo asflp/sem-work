@@ -1,15 +1,10 @@
 import {FC} from "react";
 import styles from "./MainPage.module.sass"
-import {Header} from "../../components/Header/Header.tsx";
-import chat from "../../assets/main/chat.svg"
-import event from "../../assets/main/event.svg"
-import shop from "../../assets/main/shop.svg"
+import {Header, Icon} from "../../components";
 import arrow from "../../assets/main/arrow.svg"
 import plantOne from "../../assets/main/plant1.png"
 import plantTwo from "../../assets/main/plant2.png"
 import plantThree from "../../assets/main/plant3.png"
-import star from "../../assets/main/star.svg"
-import addItem from "../../assets/main/add-item.svg"
 import eventOne from "../../assets/main/event1.png"
 import eventTwo from "../../assets/main/event2.png"
 import eventThree from "../../assets/main/event3.png"
@@ -19,6 +14,7 @@ import tempForum from "../../assets/main/forum/temp.svg"
 import plantPotForum from "../../assets/main/forum/plant-pot.svg"
 import waterForum from "../../assets/main/forum/water.svg"
 import { motion } from "framer-motion";
+import {NavLink} from "react-router-dom";
 
 export const MainPage: FC = () => {
 
@@ -42,7 +38,7 @@ export const MainPage: FC = () => {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { delay: 0.6 }
+            transition: { delay: 1 }
         },
     }
 
@@ -51,112 +47,111 @@ export const MainPage: FC = () => {
             <div className={styles.main_image}>
                 <Header selectedItem={"Главная"}/>
 
-                <div className={styles.main_image__labels}>
-                    <div className={styles.main_image__labels__first}>Общие интересы, общие проблемы и все про растения</div>
-                    <div className={styles.main_image__labels__second}>Найдите растение своей мечты для украшения
-                        дома вместе с нами, а мы поможем Вам в этом</div>
-                </div>
+                <section className={styles.main_image__labels}>
+                    <h1 className={styles.main_image__labels__first}>Общие интересы, общие проблемы и все про растения</h1>
+                    <h2 className={styles.main_image__labels__second}>Найдите растение своей мечты для украшения
+                        дома вместе с нами, а мы поможем Вам в этом</h2>
+                </section>
             </div>
 
-            <motion.div initial={"hidden"} whileInView={"visible"} className={styles.main_advantages}>
-                <motion.div custom={3} variants={featuresAnimation} className={styles.main_advantages__item}>
-                    <img src={chat}/>
+            <motion.section initial={"hidden"} whileInView={"visible"} className={styles.main_advantages}>
+                <motion.li custom={3} variants={featuresAnimation} className={styles.main_advantages__item}>
+                    <Icon id={"chat"} width={70}/>
 
                     <div className={styles.main_advantages__item__text}>
-                        <div className={styles.main_advantages__item__text__first}>Форум</div>
-                        <div className={styles.main_advantages__item__text__second}>Общайтесь с единомышленниками</div>
+                        <h5 className={styles.main_advantages__item__text__first}>Форум</h5>
+                        <p className={styles.main_advantages__item__text__second}>Общайтесь с единомышленниками</p>
                     </div>
-                </motion.div>
+                </motion.li>
 
-                <motion.div custom={2} variants={featuresAnimation} className={styles.main_advantages__item}>
-                    <img src={shop}/>
+                <motion.li custom={2} variants={featuresAnimation} className={styles.main_advantages__item}>
+                    <Icon id={"shop"} width={70}/>
 
                     <div className={styles.main_advantages__item__text}>
-                        <div className={styles.main_advantages__item__text__first}>Доска объявлений</div>
-                        <div className={styles.main_advantages__item__text__second}>Покупайте и продавайте</div>
+                        <h5 className={styles.main_advantages__item__text__first}>Доска объявлений</h5>
+                        <p className={styles.main_advantages__item__text__second}>Покупайте и продавайте</p>
                     </div>
-                </motion.div>
+                </motion.li>
 
-                <motion.div custom={1} variants={featuresAnimation} className={styles.main_advantages__item}>
-                    <img src={event}/>
+                <motion.li custom={1} variants={featuresAnimation} className={styles.main_advantages__item}>
+                    <Icon id={"event"} width={70}/>
 
                     <div className={styles.main_advantages__item__text}>
-                        <div className={styles.main_advantages__item__text__first}>Мероприятия</div>
-                        <div className={styles.main_advantages__item__text__second}>Находите крутые события</div>
+                        <h5 className={styles.main_advantages__item__text__first}>Мероприятия</h5>
+                        <p className={styles.main_advantages__item__text__second}>Находите крутые события</p>
                     </div>
-                </motion.div>
-            </motion.div>
+                </motion.li>
+            </motion.section>
 
-            <div className={styles.main_ads}>
-                <div className={styles.main_ads__see_more}>
-                    <div className={styles.main_ads__see_more__first}>Смотрите объявления и покупайте лучшее</div>
+            <section className={styles.main_ads}>
+                <NavLink to={"/all"} className={styles.main_ads__see_more}>
+                    <h3 className={styles.main_ads__see_more__first}>Смотрите объявления и покупайте лучшее</h3>
 
-                    <div className={styles.main_ads__see_more__second}>
+                    <p className={styles.main_ads__see_more__second}>
                         Смотреть все объявления
                         <img src={arrow}/>
-                    </div>
-                </div>
+                    </p>
+                </NavLink>
 
                 <motion.div initial={"hidden"} whileInView={"visible"} className={styles.main_ads__examples}>
 
                     {[[plantOne, "Марго"], [plantTwo, "Клавдия"], [plantThree, "Иван"]].map((item, index) => (
-                        <div className={styles.ad_example} key={`ad${index}`}>
+                        <li className={styles.ad_example} key={`ad${index}`}>
                             <motion.img variants={adsAnimation} src={item[0]} className={styles.ad_example}/>
 
                             <div className={styles.ad_example__back}>
                                 <div className={styles.ad_example__info}>
                                     <div className={styles.ad_example__text}>
-                                        <div className={styles.ad_example__text__name}>{item[1]}</div>
+                                        <p className={styles.ad_example__text__name}>{item[1]}</p>
                                         <div className={styles.ad_example__text__stars}>
                                             {[0, 1, 2, 3, 4].map((item) => (
-                                                <img src={star} key={item}/>
+                                                <Icon id={"star"} width={20} key={item}/>
                                             ))}
-                                            <img/>
                                         </div>
                                     </div>
 
                                     <div className={styles.ad_example__add}>
                                         500₽
-                                        <img src={addItem}/>
+                                        <Icon id={"add-item"} width={60}/>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </li>
                     ))}
                 </motion.div>
-            </div>
+            </section>
 
-            <div className={styles.main_events}>
-                <div className={styles.main_events__label_first}>Находите крутые мероприятия</div>
-                <div className={styles.main_events__label_second}>Общайтесь с единомышленниками, находите новые знакомства</div>
+            <section className={styles.main_events}>
+                <h3 className={styles.main_events__label_first}>Находите крутые мероприятия</h3>
+                <h5 className={styles.main_events__label_second}>Общайтесь с единомышленниками, находите новые знакомства</h5>
 
                 <div className={styles.main_events__images}>
                     <div className={styles.main_events__images__div}>
-                        <div className={styles.main_event_item}>
+                        <li className={styles.main_event_item}>
                             <img src={eventOne}/>
-                            <div>
+                            <p>
                                 open-space маркеты
-                            </div>
-                        </div>
+                            </p>
+                        </li>
 
-                        <div className={styles.main_event_item}>
+                        <li className={styles.main_event_item}>
                             <img src={eventTwo}/>
-                            <div>
+                            <p>
                                 живые встречи
-                            </div>
-                        </div>
+                            </p>
+                        </li>
                     </div>
 
                     <div className={styles.main_events__images__div}>
-                        <div className={styles.main_event_item}>
+                        <li className={styles.main_event_item}>
                             <img src={eventThree}/>
-                            <div>
+                            <p>
                                 мастер-классы
-                            </div>
-                        </div>
+                            </p>
+                        </li>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <div className={styles.main_forum}>
                 <div className={styles.main_forum__text}>

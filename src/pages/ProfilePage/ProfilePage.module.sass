@@ -1,3 +1,5 @@
+@import "../../styles/adaptiv"
+
 .header
   display: flex
   flex-direction: column
@@ -12,45 +14,84 @@
 
   &__main
     display: flex
-    flex-direction: column
+    flex-direction: row
     padding: 50px 120px 80px
-    align-items: center
+    align-items: start
+    justify-content: space-between
+
+    @include device(tablet)
+      padding: 30px 50px 50px
+
+    @include device(mobile)
+      padding: 30px 20px
+      flex-direction: column
+      align-items: center
 
 .user_info
   display: flex
-  flex-direction: row
-  gap: 50px
-  padding: 0 30px
+  flex-direction: column
+  padding: 30px
   justify-content: start
-  width: 100%
+  width: 30%
+  border-radius: 40px
+  box-shadow: 0 0 20px #ABB7C2
+
+  @include device(mobile)
+    width: 80%
+    margin: 0 auto
 
   img
-    width: 15%
+    width: 40%
     border-radius: 90px
-    box-shadow: 0 0 20px #65cba5
+    box-shadow: 0 0 20px #65c2cb
+    margin: 0 auto
 
   &__text
     display: flex
     flex-direction: column
-    align-items: start
+    align-items: center
     color: black
     gap: 5px
 
   &__name
     font-size: 30px
     font-weight: 600
+    margin: 0
+
+    @include device(tablet)
+      color: red
 
   &__mail
     font-weight: 400
     font-size: 20px
+    margin: 0
+    color: #269172
+    padding: 2px 5px
+    border-radius: 12px
+    background-color: #d7f6f4
 
   &__how_long
     font-weight: 400
     font-size: 20px
+    color: black
+    margin: 20px auto 0 0
 
   &__description
     font-weight: 400
     font-size: 20px
+    color: black
+    margin: 0
+
+.about
+  display: flex
+  flex-direction: column
+  width: 60%
+  border-radius: 40px
+  box-shadow: 0 0 20px #ABB7C2
+
+  @include device(mobile)
+    box-shadow: none
+    width: 90%
 
 .ads_choose
   display: flex
@@ -60,14 +101,26 @@
   font-size: 20px
   font-weight: 400
   cursor: pointer
-  margin: 50px 0 30px
+  margin: 0 auto
+  padding: 0
 
   &__selected
     color: #65cba5
     font-size: 22px
     font-weight: 700
-    cursor: pointer
+    cursor: default
+
+  @include device(mobile)
+    margin: 20px auto 0
 
 .ads
   display: grid
-  gap: 50px
+  gap: 30px
+  padding: 20px 50px 50px
+  grid-template-columns: repeat(2, 1fr)
+
+  @include device(tablet)
+    padding: 20px 30px
+
+  @include device(mobile)
+    padding: 0

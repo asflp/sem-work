@@ -5,6 +5,5 @@ export const Redirect = ( children: ReactNode ) => {
     if (!token) {
         window.location.assign("../")
      }
-    // Outlet
     return <>{children}</>
 }

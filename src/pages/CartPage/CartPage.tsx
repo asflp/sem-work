@@ -1,9 +1,14 @@
 import {FC} from "react";
 import styles from "./CartPage.module.sass";
-import {Header} from "../../components/Header/Header.tsx";
-import {AdvertisementItem} from "../../components/AdvertisementItem/AdvertisementItem.tsx";
+import {Header, AdvertisementItem} from "../../components";
+import {userStore} from "../../store/UserStore.ts";
 
 export const CartPage: FC = () => {
+    const token = userStore.user?.token;
+    if (!token) {
+        window.location.assign("../")
+    }
+
     return(
         <div className={styles.cart}>
             <div className={styles.header}>

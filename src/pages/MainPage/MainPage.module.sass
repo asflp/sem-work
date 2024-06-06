@@ -1,16 +1,26 @@
 @import "../../styles/animations"
+@import "../../styles/adaptiv"
 
 .main_page
   display: flex
   flex-direction: column
   width: 100%
+  padding-bottom: 100px
 
 .main_image
   display: flex
   flex-direction: column
   width: 100%
   background-image: url("../../assets/main-banner.png")
-  background-size: 100%
+  background-size: auto 100%
+  background-repeat: repeat-x
+
+  @include device(tablet)
+    background-size: auto 100%
+
+  @include device(mobile)
+    color: #120f6e
+    font-weight: 200
 
   &__labels
     display: flex
@@ -26,6 +36,24 @@
       font-weight: 300
       font-size: 24px
 
+    @include device(tablet)
+      margin: 80px 150px 350px
+
+      &__first
+        font-size: 40px
+
+      &__second
+        font-size: 20px
+
+    @include device(mobile)
+      margin: 80px 100px 250px
+
+      &__first
+        font-size: 30px
+
+      &__second
+        font-size: 18px
+
 
 .main_advantages
   display: flex
@@ -39,9 +67,8 @@
     gap: 24px
     width: 27%
 
-    img
+    svg
       width: 70px
-      height: 70px
 
     &__text
       display: flex
@@ -52,11 +79,53 @@
       &__first
         font-size: 25px
         font-weight: 500
+        margin: 0
 
       &__second
         font-size: 14px
         font-weight: 500
         color: #828282
+        margin: 0
+
+  @include device(tablet)
+    padding: 50px 50px 0
+    flex-direction: column-reverse
+    align-items: center
+    gap: 30px
+
+    &__item
+      gap: 15px
+      width: 100%
+
+    svg
+      width: 50px
+      margin-left: 100px
+
+      &__text
+
+        &__first
+          font-size: 12px
+        &__second
+          font-size: 12px
+
+  @include device(mobile)
+    flex-direction: column-reverse
+    align-items: center
+    padding: 50px 100px 0
+    gap: 30px
+
+    &__item
+      gap: 15px
+      width: 100%
+
+    svg
+      width: 40px
+
+      &__text
+        &__first
+          font-size: 14px
+        &__second
+          font-size: 12px
 
 
 .main_ads
@@ -79,6 +148,7 @@
       font-weight: 500
       font-size: 50px
       text-align: start
+      color: black
 
     &__second
       display: flex
@@ -87,6 +157,7 @@
       text-align: start
       font-weight: 500
       font-size: 18px
+      color: black
 
       img
         height: 28px
@@ -97,6 +168,50 @@
     flex-direction: row
     justify-content: space-between
     width: 70%
+
+  @include device(tablet)
+    flex-direction: column
+    padding: 100px 100px 0
+    height: auto
+    gap: 50px
+
+    &__see_more
+      width: 100%
+      gap: 10px
+
+      &__first
+        margin: 0
+
+      &__second
+        margin: 0
+
+    &__examples
+      width: 100%
+
+  @include device(mobile)
+    flex-direction: column
+    padding: 100px 100px 0
+    height: auto
+    gap: 50px
+
+    &__see_more
+      width: 100%
+      gap: 10px
+
+      &__first
+        margin: 0
+        font-size: 30px
+
+      &__second
+        margin: 0
+        font-size: 18px
+
+        img
+          width: 20px
+
+    &__examples
+      width: 100%
+
 
 .ad_example
   display: flex
@@ -112,7 +227,7 @@
     background-color: #C1D0E4
     border-radius: 50px
     width: 100%
-    height: 80%
+    height: 70%
     margin-top: auto
 
   &__info
@@ -128,13 +243,15 @@
   &__text
     display: flex
     flex-direction: column
-    width: 100%
+    width: auto
     padding: 26px 30px
 
     &__name
       display: flex
       font-weight: 500
       font-size: 24px
+      color: black
+      margin: 0
 
     &__stars
       display: flex
@@ -157,11 +274,46 @@
       height: 60px
       width: 60px
 
+  @include device(tablet)
+    height: 300px
+
+    &__text
+      padding: 20px
+      width: auto
+
+    &__add
+      svg
+        width: 40px
+
+  @include device(mobile)
+    height: 230px
+
+    &__text
+      padding: 20px
+      width: auto
+
+      &__name
+        font-size: 18px
+
+    &__add
+      font-size: 18px
+
+      svg
+        width: 30px
+
 img.ad_example
   z-index: 100
   position: absolute
   width: 100%
   pointer-events: none
+
+  @include device(tablet)
+    height: 200px
+    width: auto
+
+  @include device(mobile)
+    height: 150px
+    width: auto
 
 
 .main_events
@@ -173,11 +325,13 @@ img.ad_example
   &__label_first
     font-weight: 600
     font-size: 45px
+    margin: 0
 
   &__label_second
     font-weight: 500
     font-size: 20px
     color: #4F4F4F
+    margin: 0
 
   &__images
     display: flex
@@ -192,6 +346,12 @@ img.ad_example
       width: 49%
       gap: 13px
 
+  @include device(tablet)
+    padding: 100px 100px 0
+
+  @include device(mobile)
+    padding: 100px 100px 0
+
 .main_event_item
   display: flex
   width: 100%
@@ -202,15 +362,16 @@ img.ad_example
     border-radius: 50px
     pointer-events: none
 
-  div
+  p
     color: transparent
     z-index: 100
     position: absolute
     border-radius: 50px
     width: 100%
     height: 100%
+    margin: 0
 
-  div:hover
+  p:hover
     display: flex
     background-color: rgba(0, 0, 0, 0.3)
     width: 100%
@@ -220,7 +381,10 @@ img.ad_example
     color: white
     font-size: 50px
     font-weight: 600
+    text-align: center
 
+    @include device(mobile)
+      font-size: 30px
 
 .main_forum
   display: flex
@@ -280,3 +444,9 @@ img.ad_example
 
   &__img
     width: 40%
+
+  @include device(tablet)
+    display: none
+
+  @include device(mobile)
+    display: none
